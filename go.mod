@@ -1,3 +1,3 @@
-module fergus.molloy.xyz/aoc2026
+module fergus.molloy.xyz/aoc2025
 
 go 1.25.4

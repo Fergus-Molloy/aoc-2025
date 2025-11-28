@@ -32,6 +32,9 @@
             version = "1.0.0";
             src = ./.;
             vendorHash = null;
+            preBuild = ''
+              cp -vr inputs $out/
+            '';
           };
           default = aoc;
         }
@@ -40,7 +43,10 @@
         { pkgs }:
         {
           default = pkgs.mkShell {
-            buildInputs = with pkgs; [ go ];
+            buildInputs = with pkgs; [
+              go
+              gopls
+            ];
           };
         }
       );
