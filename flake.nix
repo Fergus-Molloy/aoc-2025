@@ -46,6 +46,7 @@
             buildInputs = with pkgs; [
               go
               gopls
+              delve
             ];
           };
         }

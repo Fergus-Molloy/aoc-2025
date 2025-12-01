@@ -12,4 +12,5 @@ var inp1 string
 
 func main() {
 	fmt.Println(day1.Pt1(inp1))
+	fmt.Println(day1.Pt2(inp1))
 }
