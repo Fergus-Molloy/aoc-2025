@@ -24,29 +24,18 @@
         );
     in
     {
-      packages = forAllSystems (
-        { pkgs }:
-        rec {
-          aoc = pkgs.buildGoModule {
-            pname = "aoc2026";
-            version = "1.0.0";
-            src = ./.;
-            vendorHash = null;
-            preBuild = ''
-              cp -vr inputs $out/
-            '';
-          };
-          default = aoc;
-        }
-      );
       devShells = forAllSystems (
         { pkgs }:
         {
           default = pkgs.mkShell {
+            nativeBuildInputs = [
+              pkgs.fd
+            ];
             buildInputs = with pkgs; [
               go
               gopls
               delve
+              gotestsum
             ];
           };
         }

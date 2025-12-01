@@ -1,10 +1,18 @@
 package day1
 
 import (
+	_ "embed"
 	"fmt"
 	"strconv"
 	"strings"
 )
+
+//go:embed 1.input
+var inp string
+
+func init() {
+	inp = strings.TrimRight(inp, "\n")
+}
 
 func addToDial(d, v int) (int, int) {
 	dial := d + v
@@ -25,8 +33,7 @@ func addToDial(d, v int) (int, int) {
 	return dial, 0
 }
 
-func Pt1(inp string) (int, error) {
-	inp = strings.TrimRight(inp, "\n")
+func Pt1() (int, error) {
 	dial := 50
 	zeroCount := 0
 
@@ -65,8 +72,7 @@ func Pt1(inp string) (int, error) {
 	return zeroCount, nil
 }
 
-func Pt2(inp string) (int, error) {
-	inp = strings.TrimRight(inp, "\n")
+func Pt2() (int, error) {
 	dial := 50
 	zeroCount := 0
 

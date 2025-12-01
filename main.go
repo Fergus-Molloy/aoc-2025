@@ -7,10 +7,7 @@ import (
 	"fergus.molloy.xyz/aoc2025/day1"
 )
 
-//go:embed inputs/1
-var inp1 string
-
 func main() {
-	fmt.Println(day1.Pt1(inp1))
-	fmt.Println(day1.Pt2(inp1))
+	fmt.Println(day1.Pt1())
+	fmt.Println(day1.Pt2())
 }
