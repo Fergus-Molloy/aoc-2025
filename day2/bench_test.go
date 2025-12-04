@@ -13,3 +13,9 @@ func BenchmarkDay2Pt2(b *testing.B) {
 		Pt2()
 	}
 }
+
+func BenchmarkDay2Pt2Parallel(b *testing.B) {
+	for b.Loop() {
+		Pt2Parallel()
+	}
+}

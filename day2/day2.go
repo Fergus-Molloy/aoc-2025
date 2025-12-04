@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 //go:embed 2.input
@@ -57,6 +58,34 @@ func Pt2() (int, error) {
 			}
 		}
 	}
+
+	return count, nil
+}
+
+func Pt2Parallel() (int, error) {
+	var count int
+	wg := new(sync.WaitGroup)
+	for ids := range strings.SplitSeq(inp, ",") {
+		wg.Go(func() {
+			parts := strings.Split(ids, "-")
+			start, err := strconv.Atoi(parts[0])
+			if err != nil {
+				return
+			}
+			end, err := strconv.Atoi(parts[1])
+			if err != nil {
+				return
+			}
+
+			for i := range end + 1 - start {
+				id := start + i
+				if repeatsAtLeastTwice(id) {
+					count += id
+				}
+			}
+		})
+	}
+	wg.Wait()
 
 	return count, nil
 }
