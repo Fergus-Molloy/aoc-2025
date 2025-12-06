@@ -2,7 +2,7 @@ package day3
 
 import "testing"
 
-func TestDay2Pt1(t *testing.T) {
+func TestDay3Pt1(t *testing.T) {
 	t.Parallel()
 
 	v, err := Pt1()
@@ -14,7 +14,7 @@ func TestDay2Pt1(t *testing.T) {
 	}
 }
 
-func TestDay2Pt2(t *testing.T) {
+func TestDay3Pt2(t *testing.T) {
 	t.Parallel()
 
 	v, err := Pt2()

@@ -1,10 +1,13 @@
 package day2
 
 import (
+	"context"
 	_ "embed"
 	"strconv"
 	"strings"
 	"sync"
+
+	"fergus.molloy.xyz/aoc2025/internal/workerpool"
 )
 
 //go:embed 2.input
@@ -86,6 +89,39 @@ func Pt2Parallel() (int, error) {
 		})
 	}
 	wg.Wait()
+
+	return count, nil
+}
+
+func Pt2Worker(n int) (int, error) {
+	ctx, cancel := context.WithCancel(context.Background())
+	lines := strings.Split(inp, ",")
+	results := workerpool.NewWorkerPool(ctx, n, lines, func(s string) int {
+		c := 0
+		parts := strings.Split(s, "-")
+		start, err := strconv.Atoi(parts[0])
+		if err != nil {
+			return 0
+		}
+		end, err := strconv.Atoi(parts[1])
+		if err != nil {
+			return 0
+		}
+
+		for i := range end + 1 - start {
+			id := start + i
+			if repeatsAtLeastTwice(id) {
+				c += id
+			}
+		}
+		return c
+	})
+
+	count := 0
+	for range lines {
+		count += <-results
+	}
+	cancel()
 
 	return count, nil
 }
