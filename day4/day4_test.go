@@ -8,10 +8,10 @@ func TestDay4Pt1(t *testing.T) {
 
 	v, err := Pt1()
 	if err != nil {
-		t.Fatalf("failed to run day 3 pt1: %v", err)
+		t.Fatalf("failed to run day 4 pt1: %v", err)
 	}
 	if v != ans {
-		t.Fatalf("incorrect answer for day 3 pt 1\nwant: %d\n got: %d", ans, v)
+		t.Fatalf("incorrect answer for day 4 pt 1\nwant: %d\n got: %d", ans, v)
 	}
 }
 
